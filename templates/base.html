@@ -1,0 +1,27 @@
+cat > templates/base.html << 'EOF'
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный дневник</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📔 Личный дневник</h1>
+            <nav>
+                <a href="{{ url_for('index') }}">Главная</a>
+                <a href="{{ url_for('add') }}">Новая запись</a>
+            </nav>
+            <form action="{{ url_for('search') }}" method="GET" class="search-form">
+                <input type="text" name="q" placeholder="Поиск...">
+                <button type="submit">Найти</button>
+            </form>
+        </header>
+        <main>{% block content %}{% endblock %}</main>
+        <footer><p>© 2026 Личный дневник</p></footer>
+    </div>
+</body>
+</html>
+EOF

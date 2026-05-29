@@ -1,0 +1,20 @@
+cat > templates/index.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<h2>📝 Мои записи</h2>
+{% if entries %}
+    {% for entry in entries %}
+    <div class="entry-card">
+        <h3>{{ entry.title }}</h3>
+        <p class="date">{{ entry.date }}</p>
+        <a href="{{ url_for('view_entry', entry_id=entry.id) }}">📖 Читать</a>
+        <form action="{{ url_for('delete_entry', entry_id=entry.id) }}" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('Удалить?')">🗑️ Удалить</button>
+        </form>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>Нет записей. <a href="{{ url_for('add') }}">Создайте первую!</a></p>
+{% endif %}
+{% endblock %}
+EOF

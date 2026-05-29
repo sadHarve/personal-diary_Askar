@@ -1,0 +1,12 @@
+cat > templates/add.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<h2>✏️ Новая запись</h2>
+<form method="POST">
+    <input type="text" name="title" placeholder="Заголовок" required>
+    <textarea name="content" rows="10" placeholder="Текст" required></textarea>
+    <button type="submit">Сохранить</button>
+    <a href="{{ url_for('index') }}">Отмена</a>
+</form>
+{% endblock %}
+EOF

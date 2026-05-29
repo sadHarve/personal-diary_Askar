@@ -1,0 +1,13 @@
+cat > templates/detail.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ entry.title }}</h2>
+<p class="date">📅 {{ entry.date }}</p>
+<p>{{ entry.content }}</p>
+<a href="{{ url_for('edit_entry', entry_id=entry.id) }}">✏️ Редактировать</a>
+<form action="{{ url_for('delete_entry', entry_id=entry.id) }}" method="POST" style="display:inline;">
+    <button type="submit" onclick="return confirm('Удалить?')">🗑️ Удалить</button>
+</form>
+<a href="{{ url_for('index') }}">🏠 На главную</a>
+{% endblock %}
+EOF
